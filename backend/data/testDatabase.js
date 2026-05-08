@@ -45,21 +45,20 @@ export const testDatabase = [
         penalty: -2
       }
     ]
-  },
-
-  // MODULE 4: Dynamic AI Clinical Interview
-  {
-    id: "ai-semantic",
-    title: "Dynamic AI Clinical Interview",
-    description: "A real-time, dynamic conversation with an AI neuropsychologist evaluating abstract reasoning.",
-    color: "bg-cyan-600",
-    questions: [
-      {
-        id: "ai1",
-        type: "AI_INTERVIEW",
-        points: 5,
-        needsManualGrading: false
-      }
-    ]
   }
+  // // MODULE 4: Dynamic AI Clinical Interview
+  // {
+  //   id: "ai-semantic",
+  //   title: "Dynamic AI Clinical Interview",
+  //   description: "A real-time, dynamic conversation with an AI neuropsychologist evaluating abstract reasoning.",
+  //   color: "bg-cyan-600",
+  //   questions: [
+  //     {
+  //       id: "ai1",
+  //       type: "AI_INTERVIEW",
+  //       points: 5,
+  //       needsManualGrading: false
+  //     }
+  //   ]
+  // }
 ];

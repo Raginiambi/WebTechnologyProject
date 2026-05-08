@@ -7,15 +7,26 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import './admin/styles/admin.css';
+import AdminDashboard from './admin/pages/AdminDashboard';
+import UsersPage from './admin/pages/UsersPage';
+import UserDetails from './admin/pages/UserDetails';
+import TestsPage from './admin/pages/TestsPage';
+import AnalyticsPage from './admin/pages/AnalyticsPage';
+
+import ResultsPage from './admin/pages/ResultsPage';
+import HighRiskPage from './admin/pages/HighRiskPage';
 import { ThemeProvider } from './context/ThemeContext';
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isTestEngine = location.pathname.startsWith('/test/');
+
+  const isAdmin = location.pathname.startsWith('/admin');
   
   return (
     <div className="flex flex-col min-h-screen">
-      {!isTestEngine && <Header />}
+      {!isTestEngine && !isAdmin && <Header />}
       <main className="flex-grow">
         {children}
       </main>
@@ -42,6 +53,15 @@ function App() {
 
             {/* The Dynamic Test Engine */}
             <Route path="/test/:testId" element={<TestEngine />} />
+
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<UsersPage />} />
+            <Route path="/admin/users/:id" element={<UserDetails />} />
+            <Route path="/admin/tests" element={<TestsPage />} />
+            <Route path="/admin/analytics" element={<AnalyticsPage />} />
+
+            <Route path="/admin/results" element={<ResultsPage />} />
+<Route path="/admin/high-risk" element={<HighRiskPage />} />
           </Routes>
         </Layout>
       </Router>

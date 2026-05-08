@@ -5,7 +5,7 @@ import NeuralBackground from '../components/NeuralBackground';
 import { login } from '../api/auth';
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '' ,loginType:'user',});
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,8 +20,27 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      await login(formData);
-      navigate('/'); // Redirect to dashboard or landing page
+      // await login(formData);
+      // navigate('/'); // Redirect to dashboard or landing page
+      const user = await login(formData);
+
+if (
+  formData.loginType === 'admin'
+) {
+
+  if (user.role !== 'admin') {
+
+    throw new Error(
+      'This account is not admin'
+    );
+  }
+
+  navigate('/admin');
+
+} else {
+
+  navigate('/');
+}
     } catch (err) {
       setError(err.message || 'Failed to login');
     } finally {
@@ -53,6 +72,42 @@ const LoginPage = () => {
                 {error}
               </div>
             )}
+
+            <div className="space-y-2">
+
+  <label className="text-sm font-semibold text-slate-300 ml-1">
+    Login Type
+  </label>
+
+  <select
+    name="loginType"
+    value={formData.loginType}
+    onChange={handleChange}
+    className="
+      w-full
+      px-4
+      py-3
+      bg-black/20
+      text-white
+      border
+      border-jb-border
+      rounded-xl
+      focus:ring-2
+      focus:ring-jb-accent
+      outline-none
+    "
+  >
+
+    <option value="user">
+      User Login
+    </option>
+
+    <option value="admin">
+      Admin Login
+    </option>
+
+  </select>
+</div>
 
             <div className="space-y-2 relative">
               <label className="text-sm font-semibold text-slate-300 ml-1">Email Address</label>

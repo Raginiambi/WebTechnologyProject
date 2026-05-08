@@ -6,10 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 const LANGUAGES = [
   { code: 'en', label: 'English' },
   { code: 'hi', label: 'हिंदी (Hindi)' },
-  { code: 'mr', label: 'मराठी (Marathi)' },
-  { code: 'es', label: 'Español (Spanish)' },
-  { code: 'fr', label: 'Français (French)' },
-  { code: 'zh-CN', label: '中文 (Chinese)' },
+  { code: 'mr', label: 'मराठी (Marathi)' }
 ];
 
 const Header = () => {

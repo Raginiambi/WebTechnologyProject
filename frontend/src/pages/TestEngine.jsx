@@ -65,14 +65,14 @@ const TestEngine = () => {
       const rawUserAnswer = answers[q.id];
       let isCorrect = false;
 
-      // 1. Handle the AI pre-graded object (Gemini) - UPDATED TO AI_INTERVIEW
-      if (q.type === 'AI_INTERVIEW' && rawUserAnswer?.type === 'AI_GRADED') {
-        total += rawUserAnswer.score;
-        return; 
-      }
+      // // 1. Handle the AI pre-graded object (Gemini) - UPDATED TO AI_INTERVIEW
+      // if (q.type === 'AI_INTERVIEW' && rawUserAnswer?.type === 'AI_GRADED') {
+      //   total += rawUserAnswer.score;
+      //   return; 
+      // }
       
       // 2. Handle Pattern Memory (Arrays converted to strings)
-      else if (q.type === 'PATTERN_MEMORY') {
+       if (q.type === 'PATTERN_MEMORY') {
         const correctStr = q.targetPattern.sort().join(',');
         if ((rawUserAnswer || "").toString() === correctStr) isCorrect = true;
       } 
@@ -117,11 +117,13 @@ const TestEngine = () => {
             'Authorization': `Bearer ${user?.token}`
           },
           body: JSON.stringify({
+            userId: user?._id,
             testId,
             finalScore: calculatedScore,
             maxScore: calculatedMax,
             answers
           })
+          
         });
       } catch (err) {
         console.error('Failed to save score:', err);

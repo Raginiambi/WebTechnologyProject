@@ -20,8 +20,49 @@ const SignupPage = () => {
     setLoading(true);
 
     try {
-      await signup(formData);
-      navigate('/'); // Redirect to dashboard or landing page
+      // await signup(formData);
+      // navigate('/'); // Redirect to dashboard or landing page
+      try {
+
+  /* ================= EMAIL VALIDATION ================= */
+
+  const blockedDomains = [
+    'example.com',
+    'abc.com',
+    'test.com',
+    'fake.com',
+  ];
+
+  const emailDomain =
+    formData.email
+      .split('@')[1]
+      ?.toLowerCase();
+
+  if (
+    blockedDomains.includes(emailDomain)
+  ) {
+
+    throw new Error(
+      'Please use a real email address'
+    );
+  }
+
+  /* ================= SIGNUP ================= */
+
+  await signup(formData);
+
+  navigate('/');
+
+} catch (err) {
+
+  setError(
+    err.message || 'Failed to sign up'
+  );
+
+} finally {
+
+  setLoading(false);
+}
     } catch (err) {
       setError(err.message || 'Failed to sign up');
     } finally {

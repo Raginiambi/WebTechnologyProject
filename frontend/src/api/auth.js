@@ -21,24 +21,96 @@ export const signup = async (userData) => {
     return data;
 };
 
-export const login = async (userData) => {
-    const response = await fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-    });
+// export const login = async (userData) => {
+//     const response = await fetch(`${API_URL}/login`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(userData),
+//     });
 
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
-    }
+//     const data = await response.json();
+//     if (!response.ok) {
+//         throw new Error(data.message || 'Something went wrong');
+//     }
 
-    if (data.token) {
-        localStorage.setItem('user', JSON.stringify(data));
+//     if (data.token) {
+//         localStorage.setItem('user', JSON.stringify(data));
+//     }
+//     return data;
+// };
+
+export const login = async (formData) => {
+
+  let baseUrl =
+    import.meta.env.VITE_API_URL ||
+    'http://localhost:5000';
+
+  baseUrl = baseUrl.replace(/\/+$/, '');
+
+  const response = await fetch(
+    `${baseUrl}/api/auth/login`,
+    {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(formData),
     }
-    return data;
+  );
+
+  const data = await response.json();
+
+  console.log('LOGIN RESPONSE:', data);
+
+  if (!response.ok) {
+
+    throw new Error(
+      data.message || 'Login failed'
+    );
+  }
+  
+
+  /* ================= STORE USER ================= */
+
+//   const userData = {
+
+//     _id:
+//       data._id ||
+//       data.user?._id,
+
+//     name:
+//       data.name ||
+//       data.user?.name,
+
+//     email:
+//       data.email ||
+//       data.user?.email,
+
+//     token:
+//       data.token || data.access_token,
+
+//     role:
+//       data.role ||
+//       data.user?.role ||
+//       'user',
+//   };
+
+const userData = {
+  ...data,
+  token: data.access_token,
+};
+
+
+  localStorage.setItem(
+    'user',
+    JSON.stringify(userData)
+  );
+
+  return userData;
 };
 
 export const logout = () => {

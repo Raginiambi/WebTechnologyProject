@@ -1,0 +1,182 @@
+/* ================= ADMIN GLOBAL ================= */
+
+.admin-gradient-text {
+  background: linear-gradient(
+    90deg,
+    rgb(130, 237, 255),
+    #8b5cf6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= CUSTOM TEXT COLORS ================= */
+
+.admin-text-cyan {
+  color: rgb(130, 237, 255) !important;
+}
+
+/* NORMAL WHITE */
+
+.admin-text-white {
+  color: #ffffff !important;
+}
+
+/* MUTED GRAY */
+
+.admin-text-muted {
+  color: #94a3b8 !important;
+}
+
+/* PAGE TITLES */
+
+.admin-page-title {
+  color: rgb(130, 237, 255) !important;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  text-shadow:
+    0 0 12px rgba(130, 237, 255, 0.2);
+}
+
+.admin-text-green {
+  color: #22c55e !important;
+}
+
+.admin-text-red {
+  color: #ef4444 !important;
+}
+
+.admin-text-purple {
+  color: #a855f7 !important;
+}
+
+/* ================= CARD ================= */
+
+.admin-card {
+  background: #131c31;
+  border: 1px solid #1e293b;
+  border-radius: 24px;
+}
+
+.admin-card-hover {
+  transition: all 0.3s ease;
+}
+
+.admin-card-hover:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(130, 237, 255, 0.6);
+
+  box-shadow:
+    0 0 20px
+    rgba(130, 237, 255, 0.15);
+}
+
+/* ================= CUSTOM SCROLLBAR ================= */
+
+.admin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(130, 237, 255);
+  border-radius: 20px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes adminFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-fade {
+  animation: adminFade 0.5s ease;
+}
+
+@keyframes glowPulse {
+
+  0% {
+    box-shadow:
+      0 0 0px rgba(130, 237, 255, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 25px rgba(130, 237, 255, 0.45);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0px rgba(130, 237, 255, 0.2);
+  }
+}
+
+.admin-glow {
+  animation: glowPulse 2s infinite;
+}
+
+/* ================= TABLE ================= */
+
+.admin-table tr {
+  transition: all 0.3s ease;
+}
+
+.admin-table tr:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* ================= BUTTONS ================= */
+
+.admin-button-cyan {
+  background: rgb(130, 237, 255);
+
+  color: #020817;
+
+  transition: all 0.3s ease;
+}
+
+.admin-button-cyan:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 18px rgba(130, 237, 255, 0.4);
+}
+
+/* ================= BORDER ================= */
+
+.admin-border-cyan {
+  border-color:
+    rgb(130, 237, 255) !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .admin-sidebar {
+    width: 100px;
+  }
+
+  .admin-hide-mobile {
+    display: none;
+  }
+}
